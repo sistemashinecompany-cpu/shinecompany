@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>SHINE LOGI</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#0f172a">
+
+  <!-- iOS Add to Home Screen -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="SHINE LOGI">
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+
+  <style>
+    :root{
+      --bg1:#0f172a;
+      --bg2:#111827;
+      --card:#ffffff;
+      --text:#0b1220;
+      --muted:#64748b;
+      --line:#e5e7eb;
+      --shadow: 0 14px 34px rgba(2,6,23,.18);
+      --shadow2: 0 10px 22px rgba(2,6,23,.14);
+      --primary:#f5c400;
+      --primary2:#eab308;
+      --accent:#2563eb;
+      --danger:#ef4444;
+      --radius:18px;
+    }
+
+    *{ box-sizing:border-box; }
+    html, body{ height:100%; }
+
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+
+      min-height:100vh;
+      min-height:100svh;
+
+      padding:
+        calc(12px + env(safe-area-inset-top, 0px))
+        10px
+        calc(12px + env(safe-area-inset-bottom, 0px));
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      background:
+        radial-gradient(900px 500px at 20% 10%, rgba(37,99,235,.25), transparent 60%),
+        radial-gradient(900px 500px at 80% 0%, rgba(245,196,0,.18), transparent 55%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
+    }
+
+    .app{
+      width:100%;
+      max-width: 920px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    /* TOPBAR */
+    .topbar{
+      display:flex;
+      gap:12px;
+      width:100%;
+      padding:10px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.08);
+      box-shadow: 0 10px 22px rgba(2,6,23,.18);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-height: 44px;
+      color: rgba(255,255,255,.95);
+      font-weight: 900;
+      letter-spacing: .2px;
+    }
+
+    .logo{
+      width:44px;height:44px;border-radius: 14px;
+      display:flex;align-items:center;justify-content:center;
+      background: linear-gradient(180deg, var(--primary), var(--primary2));
+      color:#1b1b1b;
+      font-weight: 1000;
+      box-shadow: 0 10px 18px rgba(2,6,23,.22);
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.10);
+      color: rgba(255,255,255,.92);
+      font-weight: 700;
+      white-space:nowrap;
+    }
+
+    /* CARD CONTAINER */
+    .box{
+      width:100%;
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 22px 18px;
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      animation: cardIn .28s ease both;
+    }
+
+    @keyframes cardIn{
+      from{ opacity:0; transform: translateY(10px); }
+      to{ opacity:1; transform: translateY(0); }
+    }
+
+    h1{
+      margin: 2px 0 6px 0;
+      text-align:center;
+      font-size: 24px;
+      letter-spacing: .2px;
+      color:#0b1220;
+    }
+
+    .sub{
+      text-align:center;
+      margin: 0 0 18px 0;
+      color: var(--muted);
+      font-size: 13.5px;
+      line-height:1.35;
+    }
+
+    /* GRID */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap:12px;
+    }
+
+    .card{
+      width:100%;
+      border:0;
+      border-radius: 18px;
+      padding: 18px 14px;
+      background: #ffffff;
+      box-shadow: var(--shadow2);
+      cursor:pointer;
+      transition: transform .12s ease, filter .12s ease;
+      text-align:left;
+      display:flex;
+      gap:12px;
+      align-items:center;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .card:active{ transform: scale(.985); }
+    .card:hover{ filter: brightness(1.01); }
+
+    .icon{
+      width:48px;
+      height:48px;
+      border-radius: 14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size: 24px;
+      flex:0 0 auto;
+      background: rgba(37,99,235,.14);
+    }
+
+    .icon.yellow{ background: rgba(245,196,0,.18); }
+    .icon.blue{ background: rgba(37,99,235,.14); }
+    .icon.green{ background: rgba(34,197,94,.14); }
+    .icon.purple{ background: rgba(168,85,247,.14); }
+    .icon.red{ background: rgba(239,68,68,.14); }
+    .icon.gray{ background: rgba(100,116,139,.16); }
+
+    .title{
+      font-weight: 900;
+      font-size: 16px;
+      color:#0b1220;
+      margin:0;
+    }
+    .desc{
+      margin-top:4px;
+      font-size: 13px;
+      color: var(--muted);
+      line-height:1.25;
+    }
+
+    /* CTA bottom */
+    .install{
+      margin-top: 16px;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: #f8fafc;
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height:1.35;
+      text-align:center;
+    }
+
+    /* responsive */
+    @media (max-width: 720px){
+      .grid{ grid-template-columns: 1fr; }
+      .topbar{ flex-direction: column; align-items: stretch; }
+      .brand{ justify-content:center; }
+      .badge{ justify-content:center; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      *{ animation:none !important; transition:none !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo">SL</div>
+        <div>SHINE LOGI</div>
+      </div>
+      <div class="badge">📌 Atalho oficial do sistema</div>
+    </div>
+
+    <div class="box">
+      <h1>Central do Aplicativo</h1>
+      <div class="sub">
+        Escolha uma opção abaixo. Você pode instalar este atalho na tela inicial do seu celular.
+      </div>
+
+      <div class="grid">
+
+        <!-- 1) ENTRAR NO SISTEMA (MOTORISTA/ADMIN) -->
+        <button class="card" id="btnEntrar" aria-label="Entrar no Sistema">
+          <div class="icon yellow">🔐</div>
+          <div>
+            <div class="title">Entrar no Sistema</div>
+            <div class="desc">Login para Motoristas, Admin e Superadmin</div>
+          </div>
+        </button>
+
+        <!-- 2) RELATÓRIO (exemplo: direto na página do relatório do motorista) -->
+        <button class="card" id="btnRelatorio" aria-label="Meus Relatórios">
+          <div class="icon blue">📊</div>
+          <div>
+            <div class="title">Meus Relatórios</div>
+            <div class="desc">Acesso rápido ao relatório do motorista</div>
+          </div>
+        </button>
+
+        <!-- 3) EXPORTAR (exemplo: página de exportação admin) -->
+        <button class="card" id="btnExportar" aria-label="Exportar Excel">
+          <div class="icon green">📤</div>
+          <div>
+            <div class="title">Exportar Excel</div>
+            <div class="desc">Gerar arquivo XLSX no Drive (Admin)</div>
+          </div>
+        </button>
+
+        <!-- 4) SUPORTE (exemplo externo) -->
+        <button class="card" id="btnSuporte" aria-label="Suporte">
+          <div class="icon purple">💬</div>
+          <div>
+            <div class="title">Suporte</div>
+            <div class="desc">Fale conosco (WhatsApp / E-mail)</div>
+          </div>
+        </button>
+
+        <!-- 5) MANUAL (exemplo externo) -->
+        <button class="card" id="btnManual" aria-label="Manual">
+          <div class="icon gray">📘</div>
+          <div>
+            <div class="title">Manual do Usuário</div>
+            <div class="desc">Como usar o sistema passo a passo</div>
+          </div>
+        </button>
+
+        <!-- 6) STATUS (exemplo externo) -->
+        <button class="card" id="btnStatus" aria-label="Status do Sistema">
+          <div class="icon red">🛡️</div>
+          <div>
+            <div class="title">Status do Sistema</div>
+            <div class="desc">Avisos e manutenção programada</div>
+          </div>
+        </button>
+
+      </div>
+
+      <div class="install">
+        <b>Android:</b> Menu do Chrome → <b>Instalar app</b><br>
+        <b>iPhone:</b> Safari → <b>Compartilhar</b> → <b>Adicionar à Tela de Início</b>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ===== URL DO SEU WEB APP (GAS) =====
+    const GAS_BASE = "https://script.google.com/macros/s/AKfycbzJIQgopkF4ZKgW_5IyyMmhQc7HoTWtZ4oMC5pd76AbtsQ6HOvw9Lh_mKV_L-aMYhhk9g/exec";
+
+    // Se quiser forçar tela de login direto, use:
+    // const URL_LOGIN = GAS_BASE + "?page=login";
+    const URL_LOGIN = GAS_BASE; // (mantive exatamente como você pediu)
+
+    // Exemplos de páginas internas do seu Web App (se existirem no doGet?page=)
+    const URL_RELATORIO_MOTORISTA = GAS_BASE + "?page=relatorioMotorista";
+    const URL_EXPORTAR = GAS_BASE + "?page=exportarRelatorio"; // ajuste se seu page tiver outro nome
+
+    // Links externos (troque como quiser)
+    const URL_SUPORTE = "https://wa.me/81SEUNUMEROAQUI"; // exemplo
+    const URL_MANUAL  = "https://seudominio.com/manual"; // exemplo
+    const URL_STATUS  = "https://seudominio.com/status"; // exemplo
+
+    document.getElementById("btnEntrar").addEventListener("click", () => {
+      window.location.href = URL_LOGIN;
+    });
+
+    document.getElementById("btnRelatorio").addEventListener("click", () => {
+      window.location.href = URL_RELATORIO_MOTORISTA;
+    });
+
+    document.getElementById("btnExportar").addEventListener("click", () => {
+      window.location.href = URL_EXPORTAR;
+    });
+
+    document.getElementById("btnSuporte").addEventListener("click", () => {
+      window.location.href = URL_SUPORTE;
+    });
+
+    document.getElementById("btnManual").addEventListener("click", () => {
+      window.location.href = URL_MANUAL;
+    });
+
+    document.getElementById("btnStatus").addEventListener("click", () => {
+      window.location.href = URL_STATUS;
+    });
+
+    // Service Worker (ajuda o Android a “instalar” bonitinho)
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/service-worker.js").catch(()=>{});
+    }
+  </script>
+</body>
+</html>

@@ -1,18 +1,23 @@
-<!doctype html> 
+<!doctype html>
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>SHINE LOGI</title>
+  <title>SHINE COMPANY</title>
 
   <!-- PWA (caminhos RELATIVOS: funciona em GitHub Pages /repo/) -->
   <link rel="manifest" href="manifest.webmanifest">
   <meta name="theme-color" content="#0f172a">
 
+  <!-- Ícone padrão (aba do navegador / fallback) -->
+  <link rel="icon" type="image/png" href="icons/android-chrome-192x192.png">
+
   <!-- iOS Add to Home Screen -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="SHINE LOGI">
+  <meta name="apple-mobile-web-app-title" content="SHINE COMPANY">
+
+  <!-- Se você tiver apple-touch-icon.png, troque para: icons/apple-touch-icon.png -->
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 
   <style>
@@ -176,8 +181,8 @@
 
     <div class="topbar">
       <div class="brand">
-        <div class="logo">SL</div>
-        <div>SHINE LOGI</div>
+        <div class="logo">SC</div>
+        <div>SHINE COMPANY</div>
       </div>
     </div>
 
@@ -208,7 +213,7 @@
 
     document.getElementById("btnEntrar").addEventListener("click", abrirLogin);
 
-    // Redireciona automático (curtinho só pra mostrar a tela bonita)
+    // Redireciona automático (instantâneo)
     setTimeout(abrirLogin, 0);
 
     // Service Worker (GitHub Pages: caminho relativo)
